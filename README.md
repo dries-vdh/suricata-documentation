@@ -62,3 +62,12 @@ Om te controleren of Suricata correct draait, kan je de logs bekijken.
 ```bash
 sudo tail -f /var/log/suricata/suricata.log
 ```
+
+## Alerts bekijken
+
+Om alerts te bekijken, kan je het volgende commando uitvoeren.
+
+```bash
+sudo tail -f /var/log/suricata/fast.log
+```
+

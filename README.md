@@ -48,3 +48,17 @@ Om Suricata signatures te activeren, kan je volgend commando uitvoeren.
 ```bash
 sudo suricata-update
 ```
+
+## Suricata starten
+
+Om suricata te herstarten, kan er gebruik gemaakt worden van systemctl.
+
+```bash
+sudo systemctl restart suricata
+```
+
+Om te controleren of Suricata correct draait, kan je de logs bekijken.
+
+```bash
+sudo tail -f /var/log/suricata/suricata.log
+```

@@ -71,3 +71,20 @@ Om alerts te bekijken, kan je het volgende commando uitvoeren.
 sudo tail -f /var/log/suricata/fast.log
 ```
 
+## Implementing other rulesets
+
+Suricata maakt het heel gemakkelijk om rulesets te implementeren. de Verschillende rulesets kunnen bekeken worden met de volgende commando's.
+    
+```bash
+sudo suricata-update update-sources
+sudo suricata-update list-sources
+```
+
+In dit voorbeeld zullen de Proofpoint open rules geimplementeerd worden.
+
+```bash
+sudo suricata-update enable-source et/open
+sudo suricata-update
+```
+
+Vervolgends moet de suricata service herstart worden.

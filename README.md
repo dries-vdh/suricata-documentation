@@ -41,4 +41,10 @@ af-packet:
 
 De default configuratie volstaat om een intern netwerk te monitoren. Daarom zal er niet verder worden ingegaan op de configuratie van Suricata.
 
+## Suricata signatures activeren
 
+Om Suricata signatures te activeren, kan je volgend commando uitvoeren.
+
+```bash
+sudo suricata-update
+```

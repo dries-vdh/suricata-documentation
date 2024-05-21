@@ -1,10 +1,11 @@
-# Ontketen de Kracht van Intrusiedetectie
+# Unleash the Power of Intrusion Detection
 
-## Introductie
-In dit artikel wordt er praktisch besproken hoe Suricata als IDS kan toegepast worden in een netwerkomgeving. Suricata is een open-source IDS die gebruik maakt van signature-based detection. Dit betekent dat Suricata aan de hand van vooraf gedefinieerde regels (signatures) kan detecteren of er zich verdachte activiteiten voordoen in het netwerk. Suricata is een van de meest gebruikte IDS'en en is zeer populair in zowel kleine als grote netwerkomgevingen.
+## Introduction
+This article provides a practical discussion on how to apply Suricata as an IDS in a network environment. Suricata is an open-source IDS that uses signature-based detection. This means that Suricata can detect suspicious activity in the network based on predefined rules (signatures). Suricata is one of the most widely used IDSs and is very popular in both small and large network environments.
 
-## Installatie
-Om Suricata te installeren op een Debian 12 systeem, kan je de volgende stappen volgen.
+
+## Installation
+To install Suricata on a Debian 12 system, you can follow these steps:
     
 ```bash
 sudo apt update && \
@@ -16,7 +17,7 @@ sudo apt update
 sudo apt install suricata jq -y
 ```
 
-De installatie van Suricata is nu voltooid. Om te controleren of Suricata correct geïnstalleerd is, kan je de volgende commando's uitvoeren.
+The installation of Suricata is now complete. To check if Suricata is installed correctly, you can run the following commands:
 
 ```bash
 sudo suricata --build-info
@@ -25,13 +26,13 @@ sudo systemctl status suricata
 
 ## Basic Suricata configuration
 
-Kijk welke interface je wil monitoren met het *ip a* commando. Gebruik deze informatie om Suricata te configureren.
+Check which interface you want to monitor with the ip a command. Use this information to configure Suricata.
 
 ```bash
 sudo vim /etc/suricata/suricata.yaml
 ```
 
-Om de interface te configureren, zoek naar de *af-packet* sectie en pas de *interface* waarde aan.
+To configure the interface, look for the af-packet section and change the interface value.
 
 ```yaml
 af-packet:
@@ -39,33 +40,35 @@ af-packet:
 ... 
 ```
 
-De default configuratie volstaat om een intern netwerk te monitoren. Daarom zal er niet verder worden ingegaan op de configuratie van Suricata.
+The default location to the rules files should also be changed.
 
-## Suricata signatures activeren
+The default configuration is sufficient to monitor an internal network. Therefore, we will not go into further detail on the configuration of Suricata.
 
-Om Suricata signatures te activeren, kan je volgend commando uitvoeren.
+## Activating Suricata Signatures
+
+To activate Suricata signatures, you can run the following command:
 
 ```bash
 sudo suricata-update
 ```
 
-## Suricata starten
+## Starting Suricata
 
-Om suricata te herstarten, kan er gebruik gemaakt worden van systemctl.
+To restart Suricata, you can use systemctl.
 
 ```bash
 sudo systemctl restart suricata
 ```
 
-Om te controleren of Suricata correct draait, kan je de logs bekijken.
+To check if Suricata is running correctly, you can view the logs.
 
 ```bash
 sudo tail -f /var/log/suricata/suricata.log
 ```
 
-## Alerts bekijken
+## Viewing Alerts
 
-Om alerts te bekijken, kan je het volgende commando uitvoeren.
+To view alerts, you can run the following command:
 
 ```bash
 sudo tail -f /var/log/suricata/fast.log
@@ -73,18 +76,18 @@ sudo tail -f /var/log/suricata/fast.log
 
 ## Implementing other rulesets
 
-Suricata maakt het heel gemakkelijk om rulesets te implementeren. de Verschillende rulesets kunnen bekeken worden met de volgende commando's.
+Suricata makes it very easy to implement rulesets. The different rulesets can be viewed with the following commands:
     
 ```bash
 sudo suricata-update update-sources
 sudo suricata-update list-sources
 ```
 
-In dit voorbeeld zullen de Proofpoint open rules geimplementeerd worden.
+In this example, the Proofpoint open rules will be implemented.
 
 ```bash
 sudo suricata-update enable-source et/open
 sudo suricata-update
 ```
 
-Vervolgends moet de suricata service herstart worden.
+Then the Suricata service must be restarted.

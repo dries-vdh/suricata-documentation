@@ -102,3 +102,31 @@ sudo /usr/sbin/ip link set dev ens37 promisc on
 
 Make sure to replace ens37 with the network interface you want to monitor.
 
+## Promiscuous mode service
+
+To enable promiscuous mode on boot, you can create a systemd service. Create a new file with the following command:
+
+```bash
+sudo vim /etc/systemd/system/promisc.service
+```
+
+Add the following content to the file:
+
+```toml
+[Unit]
+Description=Enable promiscuous mode
+Wants=suricata.service
+After=suricata.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+User=root
+ExecStart=/usr/sbin/ip link set dev ens37 promisc on 
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Make sure to replace ens37 with the network interface you want to monitor.
+

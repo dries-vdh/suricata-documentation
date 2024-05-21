@@ -149,3 +149,10 @@ WantedBy=multi-user.target
 
 Make sure to replace ens37 with the network interface you want to monitor.
 
+After creating the file, you can enable the service with the following command:
+
+```bash
+sudo systemctl enable promisc.service
+```
+
+

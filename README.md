@@ -24,6 +24,8 @@ sudo suricata --build-info
 sudo systemctl status suricata
 ```
 
+The service should fail to start because the configuration is not yet complete.
+
 ## Basic Suricata configuration
 
 Check which interface you want to monitor with the ip a command. Use this information to configure Suricata.
@@ -40,7 +42,7 @@ af-packet:
 ... 
 ```
 
-The default location to the rules files should also be changed.
+Make sure to replace ens33 with the network interface you want to monitor.
 
 The default configuration is sufficient to monitor an internal network. Therefore, we will not go into further detail on the configuration of Suricata.
 
@@ -50,6 +52,15 @@ To activate Suricata signatures, you can run the following command:
 
 ```bash
 sudo suricata-update
+```
+
+Make sure the default location to the rules files is */var/lib/suricata/rules/suricata.rules*. You can change this in the configuration file.
+
+```yaml
+default-rule-path: /var/lib/suricata/rules
+rule-files:
+  - suricata.rules
+... 
 ```
 
 ## Starting Suricata
@@ -91,6 +102,14 @@ sudo suricata-update
 ```
 
 Then the Suricata service must be restarted.
+
+After the service is reloaded, the new rules will be active. This can be checked by running the following commands:
+
+```bash
+sudo suricatasc
+
+suricatasc> ruleset-stat
+```
 
 ## Using Suricata with a mirror port
 

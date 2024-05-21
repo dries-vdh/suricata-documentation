@@ -91,3 +91,14 @@ sudo suricata-update
 ```
 
 Then the Suricata service must be restarted.
+
+## Using Suricata with a mirror port
+
+To use Suricata with a mirror port, you need to enable promiscuous mode on the network interface. This can be done with the following command:
+
+```bash
+sudo /usr/sbin/ip link set dev ens37 promisc on
+```
+
+Make sure to replace ens37 with the network interface you want to monitor.
+

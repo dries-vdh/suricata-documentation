@@ -155,4 +155,4 @@ After creating the file, you can enable the service with the following command:
 sudo systemctl enable promisc.service
 ```
 
-
+Do make sure that the interface is configured correctly in the /etc/network/interfaces file.
